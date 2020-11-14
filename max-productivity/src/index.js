@@ -5,6 +5,8 @@ import { Redirect, Route, Switch } from 'react-router';
 import { Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Home from './features/Home';
+import './index.css';
+
 const customHistory = createBrowserHistory();
 const Root = () => {
  return (
