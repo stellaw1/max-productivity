@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-const config = {
+export const config = {
     apiKey: "AIzaSyAUK-soj5vhmQxrltcbq_b3HsD128ZcxTE",
     authDomain: "max-productivity-e7804.firebaseapp.com",
     databaseURL: "https://max-productivity-e7804.firebaseio.com",

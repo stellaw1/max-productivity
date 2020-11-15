@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Webcam from "react-webcam";
+import firebase from 'firebase';
+import base64 from 'react-native-base64';
 
 export default class WebcamCapture extends Component {
 
@@ -8,7 +10,6 @@ export default class WebcamCapture extends Component {
 
         this.state = { imageSource: null };
     };
-
 
     render() {
         const videoConstraints = {
@@ -23,7 +24,14 @@ export default class WebcamCapture extends Component {
             const capture = React.useCallback(
               () => {
                 const imageSrc = webcamRef.current.getScreenshot();
+                //console.log(imageSrc);
+
+                var substrImageSrc = imageSrc.substr(23);
+                //console.log(substrImageSrc);
+
                 this.setState({ imageSource: imageSrc});
+
+                var storageRef = firebase.storage().ref('images').child("focus.jpg").putString(substrImageSrc, 'base64', {contentType:'image/jpg'});
               },
               [webcamRef]
             );
