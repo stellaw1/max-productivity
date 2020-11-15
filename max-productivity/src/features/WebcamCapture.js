@@ -24,18 +24,14 @@ export default class WebcamCapture extends Component {
             const capture = React.useCallback(
               () => {
                 const imageSrc = webcamRef.current.getScreenshot();
-                console.log(imageSrc);
+                //console.log(imageSrc);
 
                 var substrImageSrc = imageSrc.substr(23);
-                console.log(substrImageSrc);
+                //console.log(substrImageSrc);
 
                 this.setState({ imageSource: imageSrc});
 
-                var storageRef = firebase.storage().ref('images');
-                var imageRef = storageRef.child('test.jpg');
-                imageRef.putString(base64.encode(substrImageSrc), 'base64').then(function(snapshot) {
-                    console.log('Uploaded a base64 string!');
-                });;
+                var storageRef = firebase.storage().ref('images').child("test.jpg").putString(substrImageSrc, 'base64', {contentType:'image/jpg'});
               },
               [webcamRef]
             );
