@@ -19,6 +19,7 @@ export default class Home extends Component {
             measurementId: "G-WTGVWL93LK"
         };
         firebase.initializeApp(config);
+        const db = firebase.firestore().settings({ timestampsInSnapshots: true });
 
         return (
             <div><WebcamCapture></WebcamCapture></div>
