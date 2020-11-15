@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Webcam from "react-webcam";
+import firebase from 'firebase';
 
 export default class WebcamCapture extends Component {
 
@@ -23,7 +24,12 @@ export default class WebcamCapture extends Component {
             const capture = React.useCallback(
               () => {
                 const imageSrc = webcamRef.current.getScreenshot();
+                console.log(imageSrc);
                 this.setState({ imageSource: imageSrc});
+
+                var storageRef = firebase.storage().ref('images');
+                var imageRef = storageRef.child('test.jpg');
+                imageRef.putString(this.state.imageSource, 'base64');
               },
               [webcamRef]
             );
