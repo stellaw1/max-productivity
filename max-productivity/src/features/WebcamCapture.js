@@ -31,7 +31,7 @@ export default class WebcamCapture extends Component {
 
                 this.setState({ imageSource: imageSrc});
 
-                var storageRef = firebase.storage().ref('images').child("test.jpg").putString(substrImageSrc, 'base64', {contentType:'image/jpg'});
+                var storageRef = firebase.storage().ref('images').child("focus.jpg").putString(substrImageSrc, 'base64', {contentType:'image/jpg'});
               },
               [webcamRef]
             );
