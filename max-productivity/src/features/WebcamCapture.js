@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Webcam from "react-webcam";
 import firebase from 'firebase';
-import base64 from 'react-native-base64';
 
 export default class WebcamCapture extends Component {
 
@@ -12,11 +11,14 @@ export default class WebcamCapture extends Component {
   };
 
   async handleUploadSuccess (filename) {
+    let { bucket, fullPath } = await firebase.storage().ref('images').child(filename).getMetadata();
     let downloadURL = await firebase.storage().ref('images').child(filename).getDownloadURL();
     console.log('downloadURL', downloadURL)
 
     let newPhoto = {
-        src: downloadURL
+      src: downloadURL,
+      bucket,
+      fullPath
     }
     console.log('newPhoto', newPhoto);
 
